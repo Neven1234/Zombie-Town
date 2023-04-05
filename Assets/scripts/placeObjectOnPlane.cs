@@ -10,12 +10,12 @@ public class placeObjectOnPlane : MonoBehaviour
     // Start is called before the first frame update
     private ARPlaneManager arplanemanger;
     private ARRaycastManager raycastManager;
-    List<ARRaycastHit> hit = new List<ARRaycastHit>();
+    public List<ARRaycastHit> hit = new List<ARRaycastHit>();
     public GameObject placeObject;
     public GameObject shoot;
     public GameObject startButton;
     public GameObject plane;
-   
+    public static placeObjectOnPlane place;
     private GameObject spawenedOpject;
     private Pose placementPose;
     private bool placementValide = false;
@@ -25,6 +25,7 @@ public class placeObjectOnPlane : MonoBehaviour
     bool IsPlna = false;
     private void Awake()
     {
+        place = this;
         raycastManager = GetComponent<ARRaycastManager>();
         arplanemanger = GetComponent<ARPlaneManager>();
     }

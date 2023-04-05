@@ -17,9 +17,10 @@ public class Elzakyscript : MonoBehaviour
     ////health
     private float currentHealthe;
     private float MaxHealth = 100;
-    private bool IsDead = false;
+    public bool IsDead = false;
     public bool IsFired = true;
     bool flag = true;
+	/// potion placed
 
     private void Awake()
 	{
@@ -56,23 +57,25 @@ public class Elzakyscript : MonoBehaviour
 			{
 				StartCoroutine(Wait());
 				zombieAnim.SetBool("IsWalking", true);
+				zombieAnim.SetBool("IsAttacking", false);
 				agent.SetDestination(objectToFollow.transform.position);
 
 			}
 			else if (CanAttack)
-			{
-				
+			{				
 				Attack();
-
 			}
 
 		    if (IsDead)
 			{
-				AudioManager.instance.Play("Die");
-				AudioManager.instance.Stop("ZombiWalk");
-
+				
 				StartCoroutine(Dead());
 			}
+			if(gameControler.GameControler.couter==4)
+            {
+				gameControler.GameControler.pose.position = gameObject.transform.position;
+				gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
+            }
 
 		}
 		else
@@ -83,11 +86,12 @@ public class Elzakyscript : MonoBehaviour
 	private void Attack()
 	{
 		zombieAnim.SetBool("IsAttacking", true);
+		zombieAnim.SetBool("IsWalking", false);
 		AudioManager.instance.Play("ZombieDie");
 		StartCoroutine(AttackTime());
 	}
-		IEnumerator AttackTime()
-	   {
+	IEnumerator AttackTime()
+	{
 		if (flag)
 		{
 			CanAttack = false;
@@ -108,15 +112,15 @@ public class Elzakyscript : MonoBehaviour
 
 				IsFired = true;
 				IsDead = true;
+				AudioManager.instance.Play("Die");
 				CanAttack = false;
 				flag = false;
+
 			}
 			else
 			{
-
 				IsFired = true;
 				currentHealthe -= damage;
-
 
 			}
 
@@ -126,10 +130,8 @@ public class Elzakyscript : MonoBehaviour
 	IEnumerator Dead()
 
 	{
-		
-		yield return new WaitForSeconds(0.5f);
 		zombieAnim.SetTrigger("IsDieing");
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(1.5f);
 		Destroy(gameObject);
 	}
 
