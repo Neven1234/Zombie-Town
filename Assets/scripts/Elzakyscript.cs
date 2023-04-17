@@ -13,13 +13,15 @@ public class Elzakyscript : MonoBehaviour
 	public float stoppingDistance = 1f;
 	private Animator zombieAnim;
 	public bool CanAttack = true;
-
+	public int zombieDamage = 25;
+	placeObjectOnPlane placeObjectOnPlane;
     ////health
     private float currentHealthe;
     private float MaxHealth = 100;
     public bool IsDead = false;
     public bool IsFired = true;
     bool flag = true;
+	public int NumberOfZombie = 4;
 	/// potion placed
 
     private void Awake()
@@ -34,15 +36,9 @@ public class Elzakyscript : MonoBehaviour
 		zombieAnim = GetComponent<Animator>();
 		currentHealthe = MaxHealth;
 		agent = gameObject.GetComponent<NavMeshAgent>();
-		StartCoroutine(Wait());
-
 
 	}
-	IEnumerator Wait()
-	{
-		zombieAnim.SetBool("Ideal", true);
-		yield return new WaitForSeconds(0.7f);
-	}
+	
 	// Update is called once per frame
 	void Update()
 	{
@@ -55,7 +51,6 @@ public class Elzakyscript : MonoBehaviour
 			float disrance = Vector3.Distance(transform.position, objectToFollow.transform.position);
 			if (disrance > stoppingDistance)
 			{
-				StartCoroutine(Wait());
 				zombieAnim.SetBool("IsWalking", true);
 				zombieAnim.SetBool("IsAttacking", false);
 				agent.SetDestination(objectToFollow.transform.position);
@@ -71,7 +66,7 @@ public class Elzakyscript : MonoBehaviour
 				
 				StartCoroutine(Dead());
 			}
-			if(gameControler.GameControler.couter==4)
+			if(gameControler.GameControler.couter==NumberOfZombie)
             {
 				gameControler.GameControler.pose.position = gameObject.transform.position;
 				gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
@@ -96,7 +91,7 @@ public class Elzakyscript : MonoBehaviour
 		{
 			CanAttack = false;
 			yield return new WaitForSeconds(0.5f);
-			PlayerHealth.signleton.PlayerDamage(25);
+			PlayerHealth.signleton.PlayerDamage(zombieDamage);
 			yield return new WaitForSeconds(2);
 			CanAttack = true;
 		}

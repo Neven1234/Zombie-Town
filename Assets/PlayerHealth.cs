@@ -58,6 +58,30 @@ public class PlayerHealth : MonoBehaviour
             UpdateHealthCounter();
         }
     }
+    public void PlayerDamageZ2(float damage)
+    {
+        if (currentHealthe > 0)
+        {
+            if (damage == currentHealthe)
+            {
+                StartCoroutine(BlooD());
+
+                isAttacking = true;
+                Dead();
+                shooting.SetActive(false);
+                GameOverScreen.Setup();
+            }
+            else
+            {
+                StartCoroutine(BlooD());
+                isAttacking = true;
+                currentHealthe -= damage;
+                //Health.value -= damage;
+
+            }
+            UpdateHealthCounter();
+        }
+    }
     void Dead()
     {
         AudioManager.instance.Stop("Shoot");

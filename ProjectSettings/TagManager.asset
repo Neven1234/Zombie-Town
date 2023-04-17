@@ -9,6 +9,7 @@ TagManager:
   - Target
   - bullit
   - zombie2
+  - potion
   layers:
   - Default
   - TransparentFX

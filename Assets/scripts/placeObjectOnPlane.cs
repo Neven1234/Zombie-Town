@@ -12,14 +12,18 @@ public class placeObjectOnPlane : MonoBehaviour
     private ARRaycastManager raycastManager;
     public List<ARRaycastHit> hit = new List<ARRaycastHit>();
     public GameObject placeObject;
+   
     public GameObject shoot;
     public GameObject startButton;
     public GameObject plane;
+    public int FirstZombienumbers=5;
+   // public GameObject anotherZombie;
     public static placeObjectOnPlane place;
     private GameObject spawenedOpject;
+    
     private Pose placementPose;
     private bool placementValide = false;
-    int ZombeiCount = 0;
+    int Zombei1Count = 0;
     float zpos;
     float xpos;
     bool IsPlna = false;
@@ -66,14 +70,17 @@ public class placeObjectOnPlane : MonoBehaviour
     }
     IEnumerator ARPlaceObject()
     {
-        while (ZombeiCount < 5)
+        while (Zombei1Count < FirstZombienumbers)
         {
             xpos = Random.Range(placementPose.position.x - 1, placementPose.position.x + 2);
             zpos = Random.Range(placementPose.position.z, placementPose.position.z + 4);
+
             AudioManager.instance.Play("ZombiWalk");
-            spawenedOpject = Instantiate(placeObject, new Vector3(xpos, placementPose.position.y, zpos), placementPose.rotation);  
-            yield return new WaitForSeconds(5f);
-            ZombeiCount += 1;
+            spawenedOpject = Instantiate(placeObject, new Vector3(xpos, placementPose.position.y, zpos), placementPose.rotation);
+            
+            yield return new WaitForSeconds(5.0f);
+            Zombei1Count += 1;
+
         }
 
     }

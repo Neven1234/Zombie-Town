@@ -21,6 +21,7 @@ public class exploraion : MonoBehaviour
            
             el8Aby.ZombieDamage(50);
         }
+       
         //if (other.tag == "zombie2")
         //{
         //    zombieGded gded = other.GetComponent<zombieGded>();
@@ -48,6 +49,12 @@ public class exploraion : MonoBehaviour
             {
                 Elzakyscript elzaky = Hit.transform.GetComponent<Elzakyscript>();
                 elzaky.ZombieDamage(50);
+                Destroy(gameObject);
+            }
+            else if (Hit.transform.tag == "zombie2")
+            {
+                zombie2 zombie = Hit.transform.GetComponent<zombie2>();
+                zombie.ZombieDamage(50);
                 Destroy(gameObject);
             }
         }
