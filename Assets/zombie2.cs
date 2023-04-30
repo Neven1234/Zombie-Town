@@ -22,7 +22,7 @@ public class zombie2 : MonoBehaviour
     public bool IsDead = false;
     public bool IsFired = true;
     bool flag = true;
-    public int NumberOfZombie = 8;
+    public int NumberOfZombie = 6;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -58,7 +58,7 @@ public class zombie2 : MonoBehaviour
 
                 StartCoroutine(Dead());
             }
-            if (gameControler.GameControler.couter == NumberOfZombie )
+            if (gameControler.GameControler.couter == NumberOfZombie)
             {
                 gameControler.GameControler.pose.position = gameObject.transform.position;
                 gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
@@ -97,6 +97,7 @@ public class zombie2 : MonoBehaviour
 
                 IsFired = true;
                 IsDead = true;
+                gameControler.GameControler.couter++;
                 AudioManager.instance.Play("Die");
                 CanAttack = false;
                 flag = false;

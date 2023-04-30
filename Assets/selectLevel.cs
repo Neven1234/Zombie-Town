@@ -31,4 +31,8 @@ public class selectLevel : MonoBehaviour
     {
         SceneManager.LoadScene("shooting L2");
     }
+    public void levelThreeLoad()
+    {
+        SceneManager.LoadScene("shooting L3");
+    }
 }

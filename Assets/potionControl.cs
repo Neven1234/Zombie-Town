@@ -12,7 +12,7 @@ public class potionControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("LevelUnlock", 2);
+        PlayerPrefs.SetInt("LevelUnlock", nextlevel);
         PlayerPrefs.SetInt("potionCollected", PNumber);
         PlayerPrefs.Save();
         moves = GetComponent<Animator>();

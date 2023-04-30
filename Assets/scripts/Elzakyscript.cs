@@ -66,13 +66,13 @@ public class Elzakyscript : MonoBehaviour
 				
 				StartCoroutine(Dead());
 			}
-			if(gameControler.GameControler.couter==NumberOfZombie)
+            if (gameControler.GameControler.couter == NumberOfZombie)
             {
-				gameControler.GameControler.pose.position = gameObject.transform.position;
-				gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
+                gameControler.GameControler.pose.position = gameObject.transform.position;
+                gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
             }
 
-		}
+        }
 		else
 		{
 			Debug.Log("no object");
@@ -107,6 +107,7 @@ public class Elzakyscript : MonoBehaviour
 
 				IsFired = true;
 				IsDead = true;
+				gameControler.GameControler.couter++;
 				AudioManager.instance.Play("Die");
 				CanAttack = false;
 				flag = false;
@@ -125,6 +126,7 @@ public class Elzakyscript : MonoBehaviour
 	IEnumerator Dead()
 
 	{
+		
 		zombieAnim.SetTrigger("IsDieing");
 		yield return new WaitForSeconds(1.5f);
 		Destroy(gameObject);

@@ -9,6 +9,7 @@ public class exploraion : MonoBehaviour
     //public Animator catAnim;
     RaycastHit Hit;
     float wapoRange = 2000;
+    public GameObject Blood;
     private void Start()
     {
         
@@ -48,20 +49,18 @@ public class exploraion : MonoBehaviour
             if (Hit.transform.tag == "zombie")
             {
                 Elzakyscript elzaky = Hit.transform.GetComponent<Elzakyscript>();
+                Instantiate(Blood, Hit.point, Quaternion.identity);
                 elzaky.ZombieDamage(50);
                 Destroy(gameObject);
             }
             else if (Hit.transform.tag == "zombie2")
             {
                 zombie2 zombie = Hit.transform.GetComponent<zombie2>();
+                Instantiate(Blood, Hit.point, Quaternion.identity);
                 zombie.ZombieDamage(50);
                 Destroy(gameObject);
             }
         }
     }
-    IEnumerator destroy()
-    {
-        yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
-    }
+    
 }

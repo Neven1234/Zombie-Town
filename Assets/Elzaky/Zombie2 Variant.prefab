@@ -168,4 +168,4 @@ MonoBehaviour:
   zombieDamage: 25
   IsDead: 0
   IsFired: 1
-  NumberOfZombie: 5
+  NumberOfZombie: 6
