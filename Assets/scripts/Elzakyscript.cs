@@ -22,6 +22,7 @@ public class Elzakyscript : MonoBehaviour
     public bool IsFired = true;
     bool flag = true;
 	public int NumberOfZombie = 4;
+	int DeadOnce = 0;
 	/// potion placed
 
     private void Awake()
@@ -107,7 +108,11 @@ public class Elzakyscript : MonoBehaviour
 
 				IsFired = true;
 				IsDead = true;
-				gameControler.GameControler.couter++;
+				if(DeadOnce==0)
+                {
+					gameControler.GameControler.couter++;
+					DeadOnce++;
+				}				
 				AudioManager.instance.Play("Die");
 				CanAttack = false;
 				flag = false;
