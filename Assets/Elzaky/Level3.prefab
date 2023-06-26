@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0021849bdf47f0941b93844d1f9aacc1, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0021849bdf47f0941b93844d1f9aacc1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -79,7 +79,10 @@ PrefabInstance:
       addedObject: {fileID: 3864943128829562382}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0021849bdf47f0941b93844d1f9aacc1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4562917510603449044}
+      addedObject: {fileID: -2905001315735408448}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0021849bdf47f0941b93844d1f9aacc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1787896088758039601}
   m_SourcePrefab: {fileID: 100100000, guid: 0021849bdf47f0941b93844d1f9aacc1, type: 3}
 --- !u!1 &6516833378472786349 stripped
 GameObject:
@@ -116,7 +119,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.6
+  m_Speed: 0.7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -149,7 +152,103 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.79219043, y: 2.0518684, z: 0.24115698}
   m_Center: {x: 0.103904784, y: 0.5259343, z: 0.12353913}
---- !u!114 &4562917510603449044
+--- !u!82 &-2905001315735408448
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6516833378472786349}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 347d18da612da414e99eaf721462610d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &-1787896088758039601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +262,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjectTag: Player
   speed: 2
-  stoppingDistance: 1.5
+  stoppingDistance: 2
   CanAttack: 1
   zombieDamage: 25
   IsDead: 0
   IsFired: 1
-  NumberOfZombie: 9
+  NumberOfZombie: 2

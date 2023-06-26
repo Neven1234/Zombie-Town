@@ -11,9 +11,21 @@ public class GameOverScreen : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
-    public void Restart()
+    public void RestartL1()
     {
         SceneManager.LoadScene("shooting");
+    }
+    public void RestartL2()
+    {
+        SceneManager.LoadScene("shooting L2");
+    }
+    public void RestartL3()
+    {
+        SceneManager.LoadScene("shooting L3");
+    }
+    public void RestartL4()
+    {
+        SceneManager.LoadScene("shooting L4");
     }
     public void Menue()
     {

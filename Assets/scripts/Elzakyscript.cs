@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 public class Elzakyscript : MonoBehaviour
 {
 	NavMeshAgent agent;
 	public string gameObjectTag;
 	public static Elzakyscript signletonn;
+	public Slider slider;
 	//public SphereCollider bullit;
 	private GameObject objectToFollow;
 	public float speed = 2f;
@@ -37,7 +39,7 @@ public class Elzakyscript : MonoBehaviour
 		zombieAnim = GetComponent<Animator>();
 		currentHealthe = MaxHealth;
 		agent = gameObject.GetComponent<NavMeshAgent>();
-
+		updatSlider();
 	}
 	
 	// Update is called once per frame
@@ -48,12 +50,12 @@ public class Elzakyscript : MonoBehaviour
 
 		if (objectToFollow != null)
 		{
-
+			updatSlider();
 			float disrance = Vector3.Distance(transform.position, objectToFollow.transform.position);
-			if (disrance > stoppingDistance)
+			if (disrance >= stoppingDistance)
 			{
+				
 				zombieAnim.SetBool("IsWalking", true);
-				zombieAnim.SetBool("IsAttacking", false);
 				agent.SetDestination(objectToFollow.transform.position);
 
 			}
@@ -64,25 +66,25 @@ public class Elzakyscript : MonoBehaviour
 
 		    if (IsDead)
 			{
-				
+				if (gameControler.GameControler.couter == NumberOfZombie)
+				{
+					gameControler.GameControler.pose.position = gameObject.transform.position;
+					gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
+				}
 				StartCoroutine(Dead());
 			}
-            if (gameControler.GameControler.couter == NumberOfZombie)
-            {
-                gameControler.GameControler.pose.position = gameObject.transform.position;
-                gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
-            }
+            
 
         }
 		else
 		{
 			Debug.Log("no object");
 		}
+		
 	}
 	private void Attack()
 	{
 		zombieAnim.SetBool("IsAttacking", true);
-		zombieAnim.SetBool("IsWalking", false);
 		AudioManager.instance.Play("ZombieDie");
 		StartCoroutine(AttackTime());
 	}
@@ -103,12 +105,13 @@ public class Elzakyscript : MonoBehaviour
 
 		if (currentHealthe > 0)
 		{
-			if (damage == currentHealthe)
+			if (damage >= currentHealthe)
 			{
 
 				IsFired = true;
 				IsDead = true;
-				if(DeadOnce==0)
+				currentHealthe -= damage;
+				if (DeadOnce==0)
                 {
 					gameControler.GameControler.couter++;
 					DeadOnce++;
@@ -116,13 +119,13 @@ public class Elzakyscript : MonoBehaviour
 				AudioManager.instance.Play("Die");
 				CanAttack = false;
 				flag = false;
-
+				updatSlider();
 			}
 			else
 			{
 				IsFired = true;
 				currentHealthe -= damage;
-
+				updatSlider();
 			}
 
 		}
@@ -136,5 +139,9 @@ public class Elzakyscript : MonoBehaviour
 		yield return new WaitForSeconds(1.5f);
 		Destroy(gameObject);
 	}
+	public void updatSlider ()
+    {
+		slider.value = currentHealthe;
+    }
 
 }

@@ -10,6 +10,7 @@ public class exploraion : MonoBehaviour
     RaycastHit Hit;
     float wapoRange = 2000;
     public GameObject Blood;
+    public float Damage=100;
     private void Start()
     {
         
@@ -50,14 +51,21 @@ public class exploraion : MonoBehaviour
             {
                 Elzakyscript elzaky = Hit.transform.GetComponent<Elzakyscript>();
                 Instantiate(Blood, Hit.point, Quaternion.identity);
-                elzaky.ZombieDamage(50);
+                elzaky.ZombieDamage(Damage);
                 Destroy(gameObject);
             }
             else if (Hit.transform.tag == "zombie2")
             {
                 zombie2 zombie = Hit.transform.GetComponent<zombie2>();
                 Instantiate(Blood, Hit.point, Quaternion.identity);
-                zombie.ZombieDamage(50);
+                zombie.ZombieDamage(Damage);
+                Destroy(gameObject);
+            }
+            if(Hit.transform.tag== "Big Zombie")
+            {
+                BigZombie bigZombie = Hit.transform.GetComponent<BigZombie>();
+                Instantiate(Blood, Hit.point, Quaternion.identity);
+                bigZombie.ZombieBossDamage(Damage);
                 Destroy(gameObject);
             }
         }

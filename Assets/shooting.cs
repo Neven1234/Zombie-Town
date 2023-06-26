@@ -8,20 +8,37 @@ public class shooting : MonoBehaviour
     public GameObject projectil;
     public Animator Gun; 
     public float shootForce = 500.0f;
+    public string BullitSound;
     public ParticleSystem Fighr;
     float wapoRange=2000;
     RaycastHit Hit;
+    ////// try something
+    /////
+    public float timeBetweenShots;
+    public int magazineSize, bulletsPerTap;
+    int bulletsLeft, bulletsShot;
+    private void Awake()
+    {
+        bulletsLeft = magazineSize;
+    }
 
-    // Update is called once per frame
+        // Update is called once per frame
     public void shoot()
     {
-        
-        StartCoroutine(shootSound());
+        bulletsShot = bulletsPerTap;
+        AudioManager.instance.Play(BullitSound);
         GameObject bullet = Instantiate(projectil, ARCamera.position, ARCamera.rotation) as GameObject;
-        Fighr.Play();
-        Gun.SetTrigger("Fire");
-        bullet.GetComponent<Rigidbody>().AddForce(ARCamera.forward * shootForce);
+       Fighr.Play();
+       Gun.SetTrigger("Fire");
+       bullet.GetComponent<Rigidbody>().AddForce(ARCamera.forward * shootForce);
+        /////// new
+        bulletsLeft--;
+        bulletsShot--;
+        if (bulletsShot > 0 && bulletsLeft > 0)
+            Invoke("Shoot", timeBetweenShots);
     }
+    ///// new
+   
     void Update()
     {
         //if(Input.touchCount >0 && Input.GetTouch(0).phase == TouchPhase.Began )
@@ -42,10 +59,10 @@ public class shooting : MonoBehaviour
 
         //}
     }
-    IEnumerator shootSound()
-    {
-        AudioManager.instance.Play("Shoot");
-        yield return new WaitForSeconds(0.7f);
-        AudioManager.instance.Stop("Shoot");
-    }
+    //IEnumerator shootSound()
+    //{
+    //    AudioManager.instance.Play(BullitSound);
+    //    yield return new WaitForSeconds(0.7f);
+    //    AudioManager.instance.Stop("Shoot");
+    //}
 }

@@ -20,8 +20,8 @@ public class placeObjectOnPlane : MonoBehaviour
    // public GameObject anotherZombie;
     public static placeObjectOnPlane place;
     private GameObject spawenedOpject;
-    
-    private Pose placementPose;
+    public bool IsLastLevel = false;
+    public Pose placementPose;
     private bool placementValide = false;
     int Zombei1Count = 0;
     float zpos;
@@ -70,17 +70,28 @@ public class placeObjectOnPlane : MonoBehaviour
     }
     IEnumerator ARPlaceObject()
     {
-        while (Zombei1Count < FirstZombienumbers)
+        if (!IsLastLevel)
         {
-            xpos = Random.Range(placementPose.position.x - 1, placementPose.position.x + 2);
-            zpos = Random.Range(placementPose.position.z, placementPose.position.z + 4);
+            while (Zombei1Count < FirstZombienumbers)
+            {
+                xpos = Random.Range(placementPose.position.x - 1, placementPose.position.x + 2);
+                zpos = Random.Range(placementPose.position.z, placementPose.position.z + 4);
 
-            AudioManager.instance.Play("ZombiWalk");
-            spawenedOpject = Instantiate(placeObject, new Vector3(xpos, placementPose.position.y, zpos), placementPose.rotation);
-            
-            yield return new WaitForSeconds(5.0f);
-            Zombei1Count += 1;
-
+                //AudioManager.instance.Play("ZombiWalk");
+                spawenedOpject = Instantiate(placeObject, new Vector3(xpos, placementPose.position.y, zpos), placementPose.rotation);
+                Zombei1Count += 1;
+                yield return new WaitForSeconds(5.0f);
+            }
+        }
+        else if(IsLastLevel)
+        {
+            while (Zombei1Count < FirstZombienumbers)
+            { 
+               // AudioManager.instance.Play("MonsterRoor");
+                spawenedOpject = Instantiate(placeObject, new Vector3(placementPose.position.x, placementPose.position.y, placementPose.position.z+8), placementPose.rotation);
+                Zombei1Count += 1;
+                yield return new WaitForSeconds(5.0f);
+            }
         }
 
     }

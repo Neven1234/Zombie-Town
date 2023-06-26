@@ -10,6 +10,7 @@ TagManager:
   - bullit
   - zombie2
   - potion
+  - Big Zombie
   layers:
   - Default
   - TransparentFX

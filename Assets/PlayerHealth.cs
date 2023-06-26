@@ -8,7 +8,6 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     public static PlayerHealth signleton;
     public Slider Health;
-    public Text HealthCount;
     private float currentHealthe;
     private float MaxHealth = 100;
     private bool IsDead = false;
@@ -32,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateHealthCounter();
     }
     public void PlayerDamage(float damage)
     {
@@ -84,7 +83,7 @@ public class PlayerHealth : MonoBehaviour
     }
     void Dead()
     {
-        AudioManager.instance.Stop("Shoot");
+       // AudioManager.instance.Stop("Shoot");
 
         currentHealthe = 0;
         UpdateHealthCounter();
@@ -95,7 +94,6 @@ public class PlayerHealth : MonoBehaviour
     void UpdateHealthCounter()
     {
         Health.value = currentHealthe;
-        HealthCount.text = currentHealthe.ToString();
     }
      IEnumerator BlooD()
     {

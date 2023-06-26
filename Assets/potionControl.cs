@@ -9,6 +9,9 @@ public class potionControl : MonoBehaviour
     RaycastHit hit;
     public int nextlevel = 2;
     public int PNumber = 1;
+    //public LineRenderer line;
+    //public string  player;
+    //private GameObject objectToFollow;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,23 +19,17 @@ public class potionControl : MonoBehaviour
         PlayerPrefs.SetInt("potionCollected", PNumber);
         PlayerPrefs.Save();
         moves = GetComponent<Animator>();
-        
+        //objectToFollow = GameObject.FindGameObjectWithTag(player);
+        //line.positionCount = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
         StartCoroutine(Rotate());
-        //if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
-        //{
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-      
-        //    if (Physics.Raycast(ray, out hit,Mathf.Infinity))
-        //    {
-                
-        //        //SceneManager.LoadScene("Level Passed");
-        //    }
-        //}
+        //line.SetPosition(0,objectToFollow.transform.position);
+        //line.SetPosition(1, gameObject.transform.position);
+
 
     }
     IEnumerator Rotate()

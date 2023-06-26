@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/shooting L3.unity
     guid: 3ba21e22d2baa4144a016bc8bd8f82a1
+  - enabled: 1
+    path: Assets/Scenes/shooting L4.unity
+    guid: b7e0d701bd8dc6f40835a703040b736e
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 320ec21b0c12fd146aa9556bdb078fb4, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 603e2247027db134fbc347d0ddbd174e, type: 2}
