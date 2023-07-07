@@ -633,56 +633,56 @@ MonoBehaviour:
   - name: ZombiWalk
     clip: {fileID: 8300000, guid: 38313662dee2340dea2d9d6d5362f42f, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: ZombieDie
     clip: {fileID: 8300000, guid: ee1b35e00bb2c4dbaa04a0727e757c62, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Die
     clip: {fileID: 8300000, guid: 137bb003119aa47dfb5ed791d840d650, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Shoot
     clip: {fileID: 8300000, guid: d0e417fc802501147be1b6312f055858, type: 3}
     mixer: {fileID: 0}
-    volume: 0.79
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Pesto
     clip: {fileID: 8300000, guid: 9ee97b8fef4cb4c4bbbdc59b283f9549, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Gun2
     clip: {fileID: 8300000, guid: d4a8fc02cf6d71944900ea2dcb788fb2, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Gun3
     clip: {fileID: 8300000, guid: 824cd9a65f6e9a543a318eb13b300131, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Gun4
     clip: {fileID: 8300000, guid: c627a82fea33f514193672b39b955e46, type: 3}
     mixer: {fileID: 0}
-    volume: 1
+    volume: 0.782
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -3136,8 +3136,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1381200202}
   m_LocalRotation: {x: 0.022929728, y: -0.035813615, z: -0.03808303, w: 0.9983694}
-  m_LocalPosition: {x: 1.5932211, y: 2.3610632, z: 7.3966675}
-  m_LocalScale: {x: 7.921367, y: 5.222742, z: 7.4843535}
+  m_LocalPosition: {x: 0.3, y: 2.13, z: 5.71}
+  m_LocalScale: {x: 0.08414732, y: 0.110765345, z: 1.4367623}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1248471369}
@@ -8184,7 +8184,7 @@ MonoBehaviour:
   Gun: {fileID: 0}
   shootForce: 400
   BullitSound: Gun2
-  Fighr: {fileID: 0}
+  Fighr: {fileID: 1381200205}
   timeBetweenShots: 0.08
   magazineSize: 40
   bulletsPerTap: 3

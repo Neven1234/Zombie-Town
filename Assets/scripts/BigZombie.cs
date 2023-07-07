@@ -57,10 +57,11 @@ public class BigZombie : MonoBehaviour
                 gameControler.GameControler.couter = 0;
             }
             
-            if (IsDead)
-            {               
-                StartCoroutine(Dead());
-            }
+            //if (IsDead)
+            //{
+                
+            //    StartCoroutine(Dead());
+            //}
             
 
         }
@@ -78,7 +79,7 @@ public class BigZombie : MonoBehaviour
         {
             if (damage >= currentHealthe)
             {
-                
+                StartCoroutine(Dead());
                 IsFired = true;
                 IsDead = true;
                 currentHealthe -= damage;
@@ -104,18 +105,22 @@ public class BigZombie : MonoBehaviour
     IEnumerator Dead()
 
     {
-        yield return new WaitForSeconds(0.5f);
+        MonsterAnim.SetTrigger("isDead");
         updateSlaider();
-        Destroy(gameObject);
         Destroy(SpownZombies);
+        yield return new WaitForSeconds(10.0F);
+        Destroy(gameObject);
+       
     }
     IEnumerator SpownZombie()
     {
-        AudioManager.instance.Play("MonsterRoor");
+       
+       
         MonsterAnim.SetBool("Roor", true);
+        AudioManager.instance.Play("MonsterRoor");
         SpownZombies = Instantiate(GroupOfZombie, gameObject.transform.position, gameObject.transform.rotation);
-        yield return new WaitForSeconds(10.0f);
-        //MonsterAnim.SetBool("Roor", false);
+        yield return new WaitForSeconds(6.0f);
+        MonsterAnim.SetBool("Roor", false);
 
     }
     void updateSlaider()

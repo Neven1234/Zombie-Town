@@ -16,6 +16,7 @@ public class zombie2 : MonoBehaviour
     bool canDis = true;
     //public SphereCollider bullit;
     private GameObject objectToFollow;
+   // private GameObject cameraToLookAt;
     public float speed = 2f;
     public float stoppingDistance = 1f;
     public bool CanAttack = true;
@@ -37,6 +38,7 @@ public class zombie2 : MonoBehaviour
     }
     void Start()
     {
+        //cameraToLookAt = GameObject.FindGameObjectWithTag("MainCamera");
         objectToFollow = GameObject.FindGameObjectWithTag(gameObjectTag);
         zombieAnim = GetComponent<Animator>();
         currentHealthe = MaxHealth;
@@ -50,6 +52,7 @@ public class zombie2 : MonoBehaviour
         if (objectToFollow != null)
         {
             updatSlider();
+            //gameObject.transform.LookAt(cameraToLookAt.transform);
             float disrance = Vector3.Distance(transform.position, objectToFollow.transform.position);
             if (disrance >= stoppingDistance)
             {
@@ -68,12 +71,13 @@ public class zombie2 : MonoBehaviour
 
             if (IsDead)
             {
+                agent.speed = 0.0f;
                 if (gameControler.GameControler.couter == NumberOfZombie)
                 {
                     gameControler.GameControler.pose.position = gameObject.transform.position;
                     gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
                 }
-                StartCoroutine(Dead());
+                //StartCoroutine(Dead());
             }
             
 
@@ -114,9 +118,11 @@ public class zombie2 : MonoBehaviour
         {
             if (damage >= currentHealthe)
             {
+                StartCoroutine(Dead());
+                IsDead = true;
                 currentHealthe -= damage;
                 IsFired = true;
-                IsDead = true;
+                
                 if (DeadOnce == false)
                 {
                     gameControler.GameControler.couter++;
@@ -125,7 +131,7 @@ public class zombie2 : MonoBehaviour
                 AudioManager.instance.Play("Die");
                 CanAttack = false;
                 flag = false;
-                updatSlider();
+                
             }
             else
             {
@@ -139,7 +145,9 @@ public class zombie2 : MonoBehaviour
     IEnumerator Dead()
 
     {
-        yield return new WaitForSeconds(0.5f);
+        zombieAnim.SetTrigger("IsDead");
+        updatSlider();
+        yield return new WaitForSeconds(3.0f);
         Destroy(gameObject);
     }
     public void Disappear()

@@ -11,6 +11,7 @@ public class Elzakyscript : MonoBehaviour
 	public Slider slider;
 	//public SphereCollider bullit;
 	private GameObject objectToFollow;
+	//private GameObject cameraToLookAt;
 	public float speed = 2f;
 	public float stoppingDistance = 1f;
 	private Animator zombieAnim;
@@ -34,7 +35,7 @@ public class Elzakyscript : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-
+		//cameraToLookAt = GameObject.FindGameObjectWithTag("MainCamera");
 		objectToFollow = GameObject.FindGameObjectWithTag(gameObjectTag);
 		zombieAnim = GetComponent<Animator>();
 		currentHealthe = MaxHealth;
@@ -51,6 +52,7 @@ public class Elzakyscript : MonoBehaviour
 		if (objectToFollow != null)
 		{
 			updatSlider();
+			//gameObject.transform.LookAt(cameraToLookAt.transform);
 			float disrance = Vector3.Distance(transform.position, objectToFollow.transform.position);
 			if (disrance >= stoppingDistance)
 			{
@@ -66,12 +68,13 @@ public class Elzakyscript : MonoBehaviour
 
 		    if (IsDead)
 			{
+				agent.speed = 0.0f;
 				if (gameControler.GameControler.couter == NumberOfZombie)
 				{
 					gameControler.GameControler.pose.position = gameObject.transform.position;
 					gameControler.GameControler.pose.rotation = gameObject.transform.rotation;
 				}
-				StartCoroutine(Dead());
+				//StartCoroutine(Dead());
 			}
             
 
@@ -107,7 +110,7 @@ public class Elzakyscript : MonoBehaviour
 		{
 			if (damage >= currentHealthe)
 			{
-
+				StartCoroutine(Dead());
 				IsFired = true;
 				IsDead = true;
 				currentHealthe -= damage;
@@ -119,7 +122,7 @@ public class Elzakyscript : MonoBehaviour
 				AudioManager.instance.Play("Die");
 				CanAttack = false;
 				flag = false;
-				updatSlider();
+				
 			}
 			else
 			{
@@ -136,7 +139,8 @@ public class Elzakyscript : MonoBehaviour
 	{
 		
 		zombieAnim.SetTrigger("IsDieing");
-		yield return new WaitForSeconds(1.5f);
+		updatSlider();
+		yield return new WaitForSeconds(3.0F);
 		Destroy(gameObject);
 	}
 	public void updatSlider ()

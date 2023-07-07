@@ -29,8 +29,15 @@ public class AudioManager : MonoBehaviour {
 			s.source.loop = s.loop;
 		}
 	}
+    private void Update()
+    {
+		foreach (Sound s in sounds)
+		{			
+			s.source.volume = optionsCotrol.options.volume.value;			
+		}
+	}
 
-	public void Play(string sound)
+    public void Play(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		s.source.Play();
