@@ -1,5 +1,6 @@
 # Zombie-Town
-An augmented reality (AR) shooting game using  Unity , ARCore , C#
+An immersive augmented reality (AR) shooting game developed with Unity, ARCore, and C#.
+<br>Players set out on a mission to collect four elements to cure a zombie disease, encountering different types of zombies as they progress through each level.
 <br>
 the game consists of four different and difficult levels 
 <br>
